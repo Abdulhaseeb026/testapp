@@ -13,8 +13,12 @@ class AsyncStorage {
   }
 
   async getItem(item: AsyncItem) {
-    const data = await RNAsyncStorage.getItem(item)
-    return data ? JSON.parse(data) : null
+    try {
+      const data = await RNAsyncStorage.getItem(item)
+      return data ? JSON.parse(data) : null
+    } catch (e) {
+      return null
+    }
   }
 
   async removeItem(item: AsyncItem) {

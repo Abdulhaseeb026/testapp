@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import Users from './Users'
+import userReducer from './user'
 
 export const store = configureStore({
-  reducer: { Users },
+  reducer: {
+    User: userReducer,
+  },
 })
 
 export type AppDispatch = typeof store.dispatch

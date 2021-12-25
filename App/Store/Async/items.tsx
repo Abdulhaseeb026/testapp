@@ -1,5 +1,6 @@
 const Item = {
-  Key: 'value',
+  IsNotFreshInstall: 'IsNotFreshInstall',
+  Token: 'Token',
 }
 
 export default Item
