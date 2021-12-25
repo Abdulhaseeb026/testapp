@@ -5,13 +5,12 @@ import { StackScreenProps } from '@Navigation/Stack/types'
 
 import { StatusBar, View, FlatList } from 'react-native'
 import { Text } from '@Atoms'
-import { Button } from '@Molecules'
 import { Screen } from '@Templates'
 import { Colors } from '@Theme'
 
 const User = (props: StackScreenProps) => {
-  const { onContinue, isLoading, users } = useService(props)
-  const { container, button } = useStyles()
+  const { isLoading, users } = useService(props)
+  const { container } = useStyles()
 
   return (
     <>
@@ -39,9 +38,6 @@ const User = (props: StackScreenProps) => {
               />
             )}
           </View>
-          <Button style={button} onPress={onContinue}>
-            Continue
-          </Button>
         </View>
       </Screen>
     </>

@@ -15,10 +15,6 @@ const useStyles = () =>
       marginBottom: height * 0.05,
       alignSelf: 'center',
     },
-    button: {
-      marginTop: height * 0.1,
-      paddingHorizontal: 25,
-    },
   })
 
 export default useStyles

@@ -1,4 +1,19 @@
 import api from '@Api/api'
+import Async from '@Async'
+
+type UserData = {
+  name: string
+  email: string
+}
+
+type UserErrorResponse = string & {
+  status: number
+  data: {
+    name: string[]
+    email: string[]
+    non_field_errors: string[]
+  }
+}
 
 async function getUserService() {
   try {
@@ -20,4 +35,47 @@ async function getUserService() {
   }
 }
 
-export default getUserService
+async function userService({ name, email }: UserData) {
+  try {
+    const response = await api.post(
+      'https://jsonplaceholder.typicode.com/posts',
+      {
+        name: email.toLowerCase(),
+        email: email,
+      },
+    )
+
+    if (response.status === 200) {
+      return Async.setItem(Async.Item.Token, response.data).then(() => {
+        return 200
+      })
+    }
+
+    throw new Error()
+  } catch (e: any) {
+    throw parseError(e.response || e.message)
+  }
+}
+
+export { getUserService, userService }
+
+function parseError(error.UserErrorResponse) {
+  let isNameError =
+    error.status === 400 && error.data.name && error.data.name.length > 0
+  let isEmailError =
+    error.status === 400 && error.data.email && error.data.email.length > 0
+
+  if (isNameError) {
+    return {
+      type: 'name',
+      message: error.data.username[0],
+    }
+  }
+
+  if (isEmailError) {
+    return {
+      type: 'password',
+      message: error.data.password[0],
+    }
+  }
+}

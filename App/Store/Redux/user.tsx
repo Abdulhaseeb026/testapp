@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { default as getUserService } from '@Api/User'
+import { getUserService } from '@Api/User'
 
 export interface TYPE_USER {
   id: number

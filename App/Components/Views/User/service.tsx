@@ -1,27 +1,9 @@
-// import React from 'react'
-// import {} from 'react-native'
-// import { StackScreenProps } from '@Navigation/Stack/types'
-
-// const useService = (props: StackScreenProps) => {
-//   const onContinue = () => {
-//     props.navigation.navigate('User')
-//   }
-
-//   return { onContinue }
-// }
-
-// export default useService
-
 import { StackScreenProps } from 'Navigation/Stack/types'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const useService = (props: StackScreenProps) => {
   const [isLoading, setLoading] = useState(false)
   const [users, setUsers] = useState([])
-
-  const onContinue = () => {
-    props.navigation.navigate('User')
-  }
 
   getUsers = () => {
     fetch('https://jsonplaceholder.typicode.com/users/')
@@ -35,6 +17,6 @@ const useService = (props: StackScreenProps) => {
     getUsers()
   }, [])
 
-  return { onContinue, isLoading, users }
+  return { isLoading, users }
 }
 export default useService
