@@ -5,7 +5,7 @@ const useService = (props: StackScreenProps) => {
   const [isLoading, setLoading] = useState(false)
   const [users, setUsers] = useState([])
 
-  getUsers = () => {
+  const getUsers = () => {
     fetch('https://jsonplaceholder.typicode.com/users/')
       .then(response => response.json())
       .then(json => setUsers(json))
@@ -16,6 +16,19 @@ const useService = (props: StackScreenProps) => {
     setLoading(true)
     getUsers()
   }, [])
+
+  fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    body: JSON.stringify({
+      name: 'foo',
+      email: 'bar@gmail.com',
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+    .then(response => response.json())
+    .then(json => console.log(json))
 
   return { isLoading, users }
 }

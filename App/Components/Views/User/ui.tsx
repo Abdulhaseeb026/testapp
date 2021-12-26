@@ -19,7 +19,7 @@ const User = (props: StackScreenProps) => {
         <View style={container}>
           <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>User Details</Text>
+            <Text style={{ marginTop: 20 }}>User Details</Text>
           </View>
 
           <View style={{ padding: 20 }}>

@@ -8,13 +8,6 @@ const useStyles = () =>
       flex: 1,
       alignItems: 'center',
     },
-    image: {
-      height: 200,
-      width: width * 0.8,
-      marginTop: height * 0.05,
-      marginBottom: height * 0.05,
-      alignSelf: 'center',
-    },
   })
 
 export default useStyles

@@ -6,12 +6,10 @@ type UserData = {
   email: string
 }
 
-type UserErrorResponse = string & {
-  status: number
+type UserErrorResponse = {
   data: {
-    name: string[]
-    email: string[]
-    non_field_errors: string[]
+    name: string
+    email: string
   }
 }
 
@@ -40,7 +38,7 @@ async function userService({ name, email }: UserData) {
     const response = await api.post(
       'https://jsonplaceholder.typicode.com/posts',
       {
-        name: email.toLowerCase(),
+        name: name,
         email: email,
       },
     )
@@ -59,7 +57,7 @@ async function userService({ name, email }: UserData) {
 
 export { getUserService, userService }
 
-function parseError(error.UserErrorResponse) {
+function parseError(error, UserErrorResponse) {
   let isNameError =
     error.status === 400 && error.data.name && error.data.name.length > 0
   let isEmailError =
@@ -74,8 +72,8 @@ function parseError(error.UserErrorResponse) {
 
   if (isEmailError) {
     return {
-      type: 'password',
-      message: error.data.password[0],
+      type: 'email',
+      message: error.data.email[0],
     }
   }
 }
